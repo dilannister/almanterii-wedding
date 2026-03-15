@@ -1,0 +1,515 @@
+Create a PREMIUM cinematic Javanese wedding invitation website.
+
+The design must feel luxurious, romantic, and elegant with royal Javanese aesthetics, batik patterns, and glowing gold ornaments.
+
+Use the following stack:
+
+React (Vite)
+TailwindCSS
+Framer Motion
+Lucide React Icons
+
+Do not create custom Tailwind utilities or CSS directives that may break the build.
+
+---
+
+GLOBAL NAME FORMAT
+
+Always display the couple name as:
+
+Alman & Terii
+
+Never reverse the order.
+
+---
+
+FONTS
+
+Use these fonts:
+
+Couple names
+Amelina Script
+
+Paragraph text
+Apple Garamond
+
+Use inline styles instead of Tailwind font utilities.
+
+Example:
+
+style={{ fontFamily: "Amelina Script" }}
+
+style={{ fontFamily: "Apple Garamond" }}
+
+---
+
+COLOR PALETTE
+
+Royal Maroon
+#4b1f28
+
+Luxury Gold
+#C9A46C
+
+Soft Cream
+#F5E9E2
+
+Dark Batik Brown
+#2a1618
+
+---
+
+PROJECT STRUCTURE
+
+The project must contain this structure:
+
+src/
+
+components/
+Hero.jsx
+EnvelopeOpening.jsx
+BrideGroom.jsx
+LoveStory.jsx
+EventDetails.jsx
+Countdown.jsx
+Gallery.jsx
+RSVP.jsx
+WeddingGift.jsx
+Closing.jsx
+FlowerPetals.jsx
+
+config/
+flowerConfig.js
+
+assets/
+batik.png
+ornament.png
+jasmine.png
+
+---
+
+FLOWER PETAL SYSTEM
+
+Create a reusable component:
+
+FlowerPetals.jsx
+
+Use Framer Motion to render falling jasmine petals.
+
+Petals should:
+
+fall slowly from top
+rotate slightly
+fade out near bottom
+spawn randomly across screen width
+
+---
+
+FLOWER CONFIG FILE
+
+Create a configuration file:
+
+src/config/flowerConfig.js
+
+Example:
+
+export const flowerConfig = {
+enabled: true,
+petalCount: 20,
+speed: 18,
+size: 22,
+opacity: 0.7,
+rotation: true
+}
+
+FlowerPetals component must read settings from this config.
+
+This allows easy animation control later.
+
+---
+
+FLOWER LAYER
+
+Petals should render in a fixed layer:
+
+position fixed
+top 0
+left 0
+width 100%
+height 100%
+
+Pointer events disabled so they don't block interaction.
+
+---
+
+ENVELOPE OPENING ANIMATION
+
+Create component:
+
+EnvelopeOpening.jsx
+
+Design:
+
+two maroon panels with batik texture
+
+gold glowing seam in the middle
+
+Animation:
+
+gold light appears
+panels slide open left and right
+reveal hero section
+
+Duration about 1.4 seconds.
+
+---
+
+SECTION ANIMATION SYSTEM
+
+Each section must use Framer Motion.
+
+ENTER ANIMATION
+
+opacity 0 → 1
+y 60 → 0
+scale 0.95 → 1
+
+Duration about 1.2 seconds.
+
+EXIT ANIMATION
+
+opacity 1 → 0
+scale 1 → 0.96
+
+---
+
+POP OUT ANIMATION
+
+Cards and images pop out:
+
+scale 0.9 → 1
+opacity 0 → 1
+
+---
+
+PARALLAX BACKGROUND
+
+Background batik texture should move slower during scroll.
+
+Create depth effect.
+
+---
+
+HERO SECTION
+
+Fullscreen hero.
+
+Background:
+
+batik texture
+gold glow lighting
+floating particles
+
+Center text:
+
+Alman & Terii
+
+Large elegant calligraphy.
+
+Add button:
+
+Open Invitation
+
+Button hover animation:
+
+glow and scale up.
+
+---
+
+BRIDE AND GROOM SECTION
+
+Both profiles inside ONE shared frame.
+
+Layout:
+
+Desktop
+
+Groom | Bride
+
+Mobile
+
+Stack vertically.
+
+Each profile contains:
+
+circular portrait
+name
+birth date
+parents name
+
+Add gold decorative divider between them.
+
+Animation:
+
+Portraits pop out.
+
+Names reveal letter by letter.
+
+---
+
+LOVE STORY SECTION
+
+Timeline layout.
+
+Three cards.
+
+Cards appear sequentially with pop animation.
+
+Timeline line grows downward.
+
+---
+
+EVENT DETAILS
+
+Luxury event cards:
+
+Akad
+Reception
+
+Cards contain:
+
+calendar icon
+location icon
+date
+time
+address
+
+Hover animation:
+
+lift and glow.
+
+---
+
+COUNTDOWN SECTION
+
+Large elegant countdown timer.
+
+Days
+Hours
+Minutes
+Seconds
+
+Each box pops out sequentially.
+
+---
+
+GALLERY
+
+Grid photo gallery.
+
+Images animate:
+
+fade in
+scale up
+
+Hover zoom effect.
+
+---
+
+RSVP
+
+Luxury RSVP form card.
+
+Fields:
+
+Name
+Attendance
+Message
+
+Submit button with gold gradient.
+
+---
+
+WEDDING GIFT SECTION
+
+Placed AFTER RSVP.
+
+Two gift cards:
+
+Bank transfer
+Digital wallet
+
+Each card contains:
+
+bank logo
+account name
+account number
+copy button
+
+---
+
+CLOSING SECTION
+
+Romantic closing quote.
+
+Below:
+
+Alman & Terii
+
+Text glows softly.
+
+---
+
+DESIGN GOAL
+
+The final website should look like a premium cinematic wedding invitation made by a professional design studio.
+
+RESPONSIVE DESIGN REQUIREMENT
+
+The website must be fully responsive and optimized for both mobile phones and desktop screens.
+
+Use TailwindCSS responsive utilities such as:
+
+sm:
+md:
+lg:
+xl:
+
+---
+
+MOBILE FIRST DESIGN
+
+The layout must follow a mobile-first approach.
+
+Default layout should be optimized for mobile screens first.
+
+Then enhance layout for larger screens.
+
+---
+
+HERO SECTION RESPONSIVE
+
+Mobile:
+
+Large centered title
+button below
+single column layout
+
+Desktop:
+
+Larger typography
+more spacing
+floating ornaments visible
+
+---
+
+BRIDE AND GROOM SECTION RESPONSIVE
+
+Desktop layout:
+
+Groom | Bride
+
+Two columns side by side.
+
+Mobile layout:
+
+Stack vertically:
+
+Groom
+Bride
+
+Center aligned content.
+
+---
+
+LOVE STORY RESPONSIVE
+
+Desktop:
+
+Timeline centered.
+
+Mobile:
+
+Timeline becomes vertical stacked cards.
+
+---
+
+EVENT DETAILS RESPONSIVE
+
+Desktop:
+
+Two event cards side by side.
+
+Mobile:
+
+Cards stacked vertically.
+
+---
+
+GALLERY RESPONSIVE
+
+Mobile grid:
+
+2 columns.
+
+Tablet grid:
+
+3 columns.
+
+Desktop grid:
+
+4 columns.
+
+---
+
+RSVP FORM RESPONSIVE
+
+Mobile:
+
+Full width inputs.
+
+Desktop:
+
+Centered card with max width.
+
+---
+
+WEDDING GIFT RESPONSIVE
+
+Mobile:
+
+Cards stacked vertically.
+
+Desktop:
+
+Cards side by side.
+
+---
+
+IMAGE RESPONSIVENESS
+
+All images must use:
+
+object-cover
+responsive width
+
+Images must scale properly without distortion.
+
+---
+
+ANIMATION PERFORMANCE
+
+Animations must remain smooth on mobile devices.
+
+Avoid heavy animations that reduce performance on phones.
+
+---
+
+FINAL RESULT
+
+The website must look elegant and fully functional on:
+
+Mobile phones
+Tablets
+Laptop screens
+Large desktop screens.
