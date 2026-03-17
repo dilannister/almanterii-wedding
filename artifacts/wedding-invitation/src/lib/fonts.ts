@@ -1,9 +1,10 @@
 export const fonts = {
-  script: "'Great Vibes', cursive",
-  heading: "'Playfair Display', Georgia, serif",
-  body: "'Cormorant Garamond', Georgia, serif",
-  ui: "'Inter', sans-serif",
+  script: "var(--app-font-script)",
+  heading: "var(--app-font-serif)",
+  body: "var(--app-font-serif)",
+  ui: "var(--app-font-sans)",
 };
+
 
 export const colors = {
   maroon: "#4b1f28",

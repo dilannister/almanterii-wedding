@@ -63,13 +63,21 @@ export default function SaveTheDate() {
         background: sectionBg.light,
       }}
     >
-      <div style={{ position: "absolute", inset: 0, backgroundImage: BATIK_KAWUNG_LIGHT, backgroundSize: "80px 80px" }} />
-      <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,164,108,0.09) 0%, transparent 70%)" }} />
+      <div style={{ position: "absolute", top: 14, left: 14 }}>
+        <img src="/ornaments/kawung.png" style={{ width: 65, opacity: 0.8 }} />
+      </div>
 
-      <div style={{ position: "absolute", top: 14, left: 14 }}><KawungCorner size={65} light /></div>
-      <div style={{ position: "absolute", top: 14, right: 14 }}><KawungCorner size={65} flip light /></div>
-      <div style={{ position: "absolute", bottom: 14, left: 14, transform: "rotate(180deg)" }}><KawungCorner size={65} flip light /></div>
-      <div style={{ position: "absolute", bottom: 14, right: 14, transform: "rotate(180deg)" }}><KawungCorner size={65} light /></div>
+      <div style={{ position: "absolute", top: 14, right: 14 }}>
+        <img src="/ornaments/kawung.png" style={{ width: 65, transform: "scaleX(-1)", opacity: 0.8 }} />
+      </div>
+
+      <div style={{ position: "absolute", bottom: 14, left: 14, transform: "rotate(180deg)" }}>
+        <img src="/ornaments/kawung.png" style={{ width: 65, opacity: 0.8 }} />
+      </div>
+
+      <div style={{ position: "absolute", bottom: 14, right: 14, transform: "rotate(180deg)" }}>
+        <img src="/ornaments/kawung.png" style={{ width: 65, transform: "scaleX(-1)", opacity: 0.8 }} />
+      </div>
 
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: `linear-gradient(90deg, transparent, ${colors.maroon}, transparent)` }} />
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 1, background: `linear-gradient(90deg, transparent, ${colors.maroon}, transparent)` }} />
@@ -85,7 +93,18 @@ export default function SaveTheDate() {
           transition={{ duration: 1 }}
           style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}
         >
-          <GununganSmall light />
+          <motion.img
+            src="/images/gunungan.png"
+            initial={{ opacity: 0, scale: 0.8, y: -20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            style={{
+              width: "clamp(90px, 14vw, 180px)",
+              height: "auto",
+              filter: "drop-shadow(0 0 16px rgba(201,164,108,0.4))"
+            }}
+          />
         </motion.div>
 
         <motion.p

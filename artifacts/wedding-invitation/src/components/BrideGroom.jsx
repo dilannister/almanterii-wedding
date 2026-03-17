@@ -16,7 +16,6 @@ function Portrait({ name, role, birthdate, parents, delay, isGroom }) {
         padding: "0 16px",
       }}
     >
-      {/* Portrait ring with glow animation */}
       <div style={{ position: "relative", display: "inline-block", marginBottom: 24 }}>
         <motion.div
           style={{
@@ -38,12 +37,8 @@ function Portrait({ name, role, birthdate, parents, delay, isGroom }) {
             {name[0]}
           </span>
         </motion.div>
-        {/* Rotating outer ring */}
         <motion.div
-          style={{
-            position: "absolute", inset: -10, borderRadius: "50%",
-            border: `1px solid rgba(201,164,108,0.16)`, pointerEvents: "none",
-          }}
+          style={{ position: "absolute", inset: -10, borderRadius: "50%", border: `1px solid rgba(201,164,108,0.16)`, pointerEvents: "none" }}
           animate={{ rotate: 360 }}
           transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
         />
@@ -60,7 +55,8 @@ function Portrait({ name, role, birthdate, parents, delay, isGroom }) {
       </p>
       <div style={{ height: 1, background: `linear-gradient(90deg, transparent, rgba(201,164,108,0.25), transparent)`, marginBottom: 14 }} />
       <p style={{ fontFamily: fonts.body, fontSize: 13, color: colors.cream, opacity: 0.62, lineHeight: 1.65 }}>
-        Putr{isGroom ? "a" : "i"} dari<br />
+        {`Putr${isGroom ? "a" : "i"} dari`}
+        <br />
         {parents}
       </p>
     </motion.div>

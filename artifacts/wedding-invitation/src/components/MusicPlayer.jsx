@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Music, Pause, Play, Volume2, VolumeX } from "lucide-react";
 import { fonts, colors } from "../lib/fonts";
 
-export default function MusicPlayer({ audioRef }) {
+  export default function MusicPlayer({ audioRef, title }) {
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -56,7 +56,7 @@ export default function MusicPlayer({ audioRef }) {
               whiteSpace: "nowrap",
               letterSpacing: "0.05em",
             }}>
-              🎵 Gamelan Jawa — Suasana Pernikahan
+              🎵 Lana Del Rey - Young and Beautiful
             </p>
             <div style={{ display: "flex", gap: 8 }}>
               <button

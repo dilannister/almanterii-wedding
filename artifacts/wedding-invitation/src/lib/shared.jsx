@@ -17,37 +17,36 @@ export function GoldDivider({ light = false }) {
 }
 
 // Kawung corner ornament SVG
-export function KawungCorner({ size = 60, flip = false, light = false }) {
-  const stroke = light ? "rgba(75,31,40,0.2)" : "rgba(201,164,108,0.25)";
+export function KawungCorner({ size = 60, flip = false, rotate = 0 }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 60 60"
-      fill="none"
-      style={{ transform: flip ? "scaleX(-1)" : undefined }}
-    >
-      <ellipse cx="15" cy="30" rx="13" ry="18" stroke={stroke} strokeWidth="1" fill="none" />
-      <ellipse cx="30" cy="15" rx="18" ry="13" stroke={stroke} strokeWidth="1" fill="none" />
-      <ellipse cx="15" cy="15" rx="9" ry="9" stroke={stroke} strokeWidth="0.8" fill="none" />
-      <circle cx="15" cy="15" r="3" fill={stroke} />
-    </svg>
+    <img
+      src="/ornaments/corner.png"
+      style={{
+        width: size,
+        height: size,
+        objectFit: "contain",
+        opacity: 0.2,
+        position: "absolute",       // penting biar konsisten
+        pointerEvents: "none",
+        transform: `
+          ${flip ? "scaleX(-1)" : ""}
+          rotate(${rotate}deg)
+        `,
+      }}
+    />
   );
 }
-
 // Gunungan mini ornament
-export function GununganSmall({ light = false }) {
-  const stroke = light ? "rgba(75,31,40,0.45)" : "rgba(201,164,108,0.5)";
-  const fill = light ? "rgba(75,31,40,0.03)" : "rgba(201,164,108,0.04)";
-  const dot = light ? "rgba(75,31,40,0.35)" : "rgba(201,164,108,0.4)";
+export function GununganSmall() {
   return (
-    <svg width="48" height="60" viewBox="0 0 80 100" fill="none">
-      <path d="M40 5L73 90H7Z" stroke={stroke} strokeWidth="1.3" fill={fill} />
-      <path d="M40 18L63 84H17Z" stroke={stroke} strokeWidth="0.8" fill="none" />
-      <circle cx="40" cy="58" r="9" stroke={stroke} strokeWidth="0.8" fill="none" />
-      <circle cx="40" cy="58" r="3" fill={dot} />
-      <line x1="40" y1="5" x2="40" y2="18" stroke={stroke} strokeWidth="1" />
-    </svg>
+    <img
+      src="/images/gunungan.png"
+      style={{
+        width: "clamp(90px, 14vw, 180px)",
+        height: "auto",
+        filter: "drop-shadow(0 0 16px rgba(201,164,108,0.4))"
+      }}
+    />
   );
 }
 

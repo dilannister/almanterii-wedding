@@ -5,35 +5,49 @@ import { SectionHeader, KawungCorner, BATIK_KAWUNG_DARK } from "../lib/shared";
 
 const events = [
   {
-    icon: "🕌",
+    type: "akad",
     title: "Akad Nikah",
     subtitle: "Ijab Kabul",
     date: "Minggu, 26 April 2026",
     time: "09.00 WIB",
     address: "JL Al-Innayah Karang Ampel RT003/RW004 No.15\nKp Rawa Kalong\nDesa Karang Satria\nKecamatan Tambun Utara\nKabupaten Bekasi",
-    mapsQuery: "Kp+Rawa+Kalong+Desa+Karang+Satria+Tambun+Utara+Bekasi",
+    mapsLink: "https://share.google/rB1z28aq7zzRBFh7p", // ✅ FIX
     slideFrom: "left",
   },
   {
-    icon: "🌹",
+    type: "resepsi",
     title: "Resepsi Pernikahan",
     subtitle: "Wedding Reception",
     date: "Minggu, 26 April 2026",
     time: "10.00 WIB – Selesai",
     address: "JL Al-Innayah Karang Ampel RT003/RW004 No.15\nKp Rawa Kalong\nDesa Karang Satria\nKecamatan Tambun Utara\nKabupaten Bekasi",
-    mapsQuery: "Kp+Rawa+Kalong+Desa+Karang+Satria+Tambun+Utara+Bekasi",
+    mapsLink: "https://share.google/rB1z28aq7zzRBFh7p", // ✅ FIX
     slideFrom: "right",
   },
 ];
 
 function EventCard({ event, index }) {
   const fromLeft = event.slideFrom === "left";
+  const isAkad = event.type === "akad";
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: fromLeft ? -70 : 70 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{
+        opacity: 0,
+        x: fromLeft ? -70 : 70,
+        scale: isAkad ? 0.9 : 0.95,
+      }}
+      whileInView={{
+        opacity: 1,
+        x: 0,
+        scale: 1,
+      }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 1.1, delay: index * 0.15, ease: [0.21, 1.02, 0.73, 1.02] }}
+      transition={{
+        duration: isAkad ? 1.2 : 0.9,
+        delay: isAkad ? 0.1 : 0.3,
+        ease: [0.21, 1.02, 0.73, 1.02],
+      }}
       style={{
         position: "relative",
         borderRadius: 20,
@@ -45,14 +59,72 @@ function EventCard({ event, index }) {
       }}
       whileHover={{ y: -6, boxShadow: "0 20px 55px rgba(201,164,108,0.18)" }}
     >
-      {/* Accent corner glow */}
-      <div style={{ position: "absolute", top: 0, right: 0, width: 100, height: 100, background: "radial-gradient(circle at top right, rgba(201,164,108,0.1), transparent)", borderRadius: "0 20px 0 0" }} />
+      {/* glow pojok */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          width: 100,
+          height: 100,
+          background: "radial-gradient(circle at top right, rgba(201,164,108,0.1), transparent)",
+          borderRadius: "0 20px 0 0",
+        }}
+      />
 
-      <div style={{ fontSize: 36, marginBottom: 18 }}>{event.icon}</div>
-      <h3 style={{ fontFamily: fonts.heading, fontSize: 26, color: colors.gold, fontWeight: 600, marginBottom: 4 }}>{event.title}</h3>
-      <p style={{ fontFamily: fonts.ui, fontSize: 10, letterSpacing: "0.3em", color: colors.cream, opacity: 0.48, textTransform: "uppercase", marginBottom: 22 }}>{event.subtitle}</p>
+      {/* ICON + TITLE */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: isAkad ? 14 : 10,
+          marginBottom: 10,
+        }}
+      >
+        <motion.img
+          src="/ornaments/gunungann.png"
+          initial={{ opacity: 0, scale: 0.6, y: 10 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{
+            duration: isAkad ? 1 : 0.8,
+            delay: isAkad ? 0.3 : 0.5,
+          }}
+          style={{
+            width: isAkad ? 36 : 30,
+            opacity: isAkad ? 0.85 : 0.75,
+            filter: isAkad
+              ? "drop-shadow(0 0 12px rgba(201,164,108,0.5))"
+              : "drop-shadow(0 0 8px rgba(201,164,108,0.3))",
+          }}
+        />
 
-      <div style={{ height: 1, background: "rgba(201,164,108,0.18)", marginBottom: 22 }} />
+        <h3
+          style={{
+            fontFamily: fonts.heading,
+            fontSize: 26,
+            color: colors.gold,
+            margin: 0,
+          }}
+        >
+          {event.title}
+        </h3>
+      </div>
+
+      <p
+        style={{
+          fontFamily: fonts.ui,
+          fontSize: 10,
+          letterSpacing: "0.3em",
+          color: colors.cream,
+          opacity: 0.5,
+          textTransform: "uppercase",
+          marginBottom: 22,
+        }}
+      >
+        {event.subtitle}
+      </p>
+
+      <div style={{ height: 1, background: "rgba(201,164,108,0.2)", marginBottom: 22 }} />
 
       <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
         {[
@@ -60,12 +132,15 @@ function EventCard({ event, index }) {
           { Icon: Clock, text: event.time },
           { Icon: MapPin, text: event.address, multiline: true },
         ].map(({ Icon, text, multiline }, i) => (
-          <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-            <Icon size={14} style={{ color: colors.gold, marginTop: 3, flexShrink: 0 }} />
-            <p style={{ fontFamily: fonts.body, fontSize: 15, color: colors.cream, opacity: 0.82, lineHeight: 1.65 }}>
+          <div key={i} style={{ display: "flex", gap: 12 }}>
+            <Icon size={14} style={{ color: colors.gold, marginTop: 3 }} />
+            <p style={{ fontFamily: fonts.body, fontSize: 15, color: colors.cream, lineHeight: 1.6 }}>
               {multiline
                 ? text.split("\n").map((l, j, arr) => (
-                    <span key={j}>{l}{j < arr.length - 1 && <br />}</span>
+                    <span key={j}>
+                      {l}
+                      {j < arr.length - 1 && <br />}
+                    </span>
                   ))
                 : text}
             </p>
@@ -73,14 +148,35 @@ function EventCard({ event, index }) {
         ))}
       </div>
 
+      {/* 🔥 BUTTON PREMIUM */}
       <motion.a
-        href={`https://maps.google.com/?q=${event.mapsQuery}`}
+        href={event.mapsLink} // ✅ FIX FINAL
         target="_blank"
         rel="noopener noreferrer"
-        style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 24, fontFamily: fonts.ui, fontSize: 11, letterSpacing: "0.2em", color: colors.gold, textTransform: "uppercase", textDecoration: "none" }}
-        whileHover={{ x: 4 }}
+        whileHover={{
+          scale: 1.05,
+          boxShadow: "0 0 20px rgba(201,164,108,0.4)",
+        }}
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
+          marginTop: 26,
+          padding: "10px 18px",
+          borderRadius: 999,
+          background: "rgba(201,164,108,0.1)",
+          border: "1px solid rgba(201,164,108,0.4)",
+          fontFamily: fonts.ui,
+          fontSize: 11,
+          letterSpacing: "0.2em",
+          color: colors.gold,
+          textTransform: "uppercase",
+          textDecoration: "none",
+          transition: "all 0.3s ease",
+        }}
       >
-        <MapPin size={11} /> Lihat Lokasi
+        <MapPin size={14} />
+        Buka di Google Maps
       </motion.a>
     </motion.div>
   );
@@ -89,30 +185,18 @@ function EventCard({ event, index }) {
 export default function EventDetails() {
   return (
     <section
-      id="event-details"
       style={{
         position: "relative",
         padding: "100px 0",
-        overflow: "hidden",
         background: sectionBg.dark,
       }}
     >
       <div style={{ position: "absolute", inset: 0, backgroundImage: BATIK_KAWUNG_DARK, backgroundSize: "80px 80px" }} />
-      <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 65% 50% at 50% 50%, rgba(201,164,108,0.06) 0%, transparent 70%)" }} />
 
-      <div style={{ position: "absolute", top: 14, left: 14 }}><KawungCorner size={65} /></div>
-      <div style={{ position: "absolute", top: 14, right: 14 }}><KawungCorner size={65} flip /></div>
-      <div style={{ position: "absolute", bottom: 14, left: 14, transform: "rotate(180deg)" }}><KawungCorner size={65} flip /></div>
-      <div style={{ position: "absolute", bottom: 14, right: 14, transform: "rotate(180deg)" }}><KawungCorner size={65} /></div>
-
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: `linear-gradient(90deg, transparent, ${colors.gold}, transparent)` }} />
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 1, background: `linear-gradient(90deg, transparent, ${colors.gold}, transparent)` }} />
-
-      <div style={{ position: "relative", maxWidth: 960, margin: "0 auto", padding: "0 24px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 24px" }}>
         <SectionHeader pre="Rangkaian Acara" title="Detail Acara" />
 
-        <style>{`@media(min-width:768px){.events-grid{grid-template-columns:1fr 1fr !important;}}`}</style>
-        <div className="events-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: 24 }}>
+        <div style={{ display: "grid", gap: 24 }}>
           {events.map((event, i) => (
             <EventCard key={i} event={event} index={i} />
           ))}

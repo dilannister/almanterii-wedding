@@ -34,7 +34,15 @@ export default function Closing() {
           transition={{ duration: 1 }}
           style={{ display: "flex", justifyContent: "center", marginBottom: 36 }}
         >
-          <GununganSmall />
+          <img
+            src="/images/gunungan.png"
+            style={{
+              width: "clamp(80px, 12vw, 160px)",
+              height: "auto",
+              opacity: 0.9,
+              filter: "drop-shadow(0 0 12px rgba(201,164,108,0.3))"
+            }}
+          />
         </motion.div>
 
         {/* Main closing text — slow fade */}

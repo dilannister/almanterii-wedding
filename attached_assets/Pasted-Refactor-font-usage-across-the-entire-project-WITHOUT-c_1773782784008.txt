@@ -1,0 +1,95 @@
+Refactor font usage across the entire project WITHOUT changing layout, spacing, animation, colors, or structure.
+
+### OBJECTIVE
+
+Make all typography consistent using:
+
+* Script font for couple names ("Alman & Terii")
+* Elegant serif for body text
+* Clean sans-serif for UI
+
+---
+
+### STEP 1 — ADD FONT IMPORT (GLOBAL CSS)
+
+At the very top of the main global CSS file (e.g. index.css), add:
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+---
+
+### STEP 2 — DEFINE CSS VARIABLES
+
+Inside :root, ensure these exist:
+
+--app-font-script: 'Great Vibes', cursive;
+--app-font-serif: 'Cormorant Garamond', Georgia, serif;
+--app-font-sans: 'Inter', sans-serif;
+
+---
+
+### STEP 3 — CONNECT JS FONT CONFIG
+
+If there is a fonts.js (or similar), update it to:
+
+export const fonts = {
+script: "var(--app-font-script)",
+heading: "var(--app-font-serif)",
+body: "var(--app-font-serif)",
+ui: "var(--app-font-sans)",
+};
+
+---
+
+### STEP 4 — REPLACE ALL FONT USAGE
+
+Across ALL components:
+
+1. Replace any fontFamily used for couple names (e.g. "Alman & Terii") with:
+   fontFamily: "var(--app-font-script)"
+
+2. Replace body/paragraph text with:
+   fontFamily: "var(--app-font-serif)"
+
+3. Replace UI elements (buttons, labels, small text) with:
+   fontFamily: "var(--app-font-sans)"
+
+---
+
+### STEP 5 — REMOVE CONFLICTS
+
+Remove ALL hardcoded fontFamily values such as:
+
+* "serif"
+* "Georgia"
+* "Times New Roman"
+* any direct font strings
+
+Also remove any global overrides like:
+h1 { font-family: ... }
+
+---
+
+### STEP 6 — DO NOT TOUCH ANYTHING ELSE
+
+STRICT RULE:
+
+* Do NOT modify layout
+* Do NOT change spacing
+* Do NOT change animation
+* Do NOT change colors
+* Do NOT refactor component structure
+
+---
+
+### STEP 7 — VALIDATION
+
+Ensure:
+
+* "Alman & Terii" is always rendered using Great Vibes
+* No section falls back to default serif unintentionally
+* Fonts are consistent across Hero, Opening, Bride/Groom, and all sections
+
+---
+
+Return ONLY the updated files. Do not explain.

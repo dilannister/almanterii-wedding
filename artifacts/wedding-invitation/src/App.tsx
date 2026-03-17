@@ -11,7 +11,7 @@ import Closing from "@/components/Closing";
 import JavaneseOrnaments from "@/components/JavaneseOrnaments";
 import MusicPlayer from "@/components/MusicPlayer";
 
-const MUSIC_URL = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+const MUSIC_URL = "/music/wedding-music.mp3";
 
 function App() {
   const [opened, setOpened] = useState(false);
@@ -19,14 +19,22 @@ function App() {
 
   return (
     <div style={{ backgroundColor: "#1a0d10", minHeight: "100vh" }}>
-      <audio ref={audioRef} src={MUSIC_URL} loop preload="none" />
+      <audio
+        ref={audioRef}
+        src={MUSIC_URL}
+        loop
+        preload="auto"
+      />
 
       <EnvelopeOpening onOpen={() => setOpened(true)} audioRef={audioRef} />
 
       {opened && (
         <div>
           <JavaneseOrnaments />
-          <MusicPlayer audioRef={audioRef} />
+          <MusicPlayer
+            audioRef={audioRef}
+            title="Lana Del Rey - Young and Beautiful"
+          />
 
           {/* 1 — Dark maroon hero */}
           <Hero />

@@ -64,7 +64,7 @@ export default function RSVP() {
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 1, background: `linear-gradient(90deg, transparent, ${colors.maroon}, transparent)` }} />
 
       <div style={{ position: "relative", maxWidth: 560, margin: "0 auto", padding: "0 24px" }}>
-        <SectionHeader pre="Konfirmasi Kehadiran" title="RSVP" light />
+        <SectionHeader title="KONFIRMASI KEHADIRAN" light />
 
         {/* Intro text */}
         <motion.p

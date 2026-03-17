@@ -98,13 +98,6 @@ export default function Hero() {
           "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya."
         </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.3 }}
-          style={{ fontFamily: fonts.body, fontSize: "clamp(13px,1.8vw,16px)", color: colors.cream, opacity: 0.65, lineHeight: 1.75, marginBottom: 36, maxWidth: 540, margin: "0 auto 36px" }}
-        >
-          Dengan penuh rasa syukur kepada Allah SWT, kami bermaksud menyelenggarakan pernikahan kami dan mengundang Bapak/Ibu/Saudara/i untuk hadir serta memberikan doa restu.
-        </motion.p>
 
         <motion.button
           onClick={() => document.getElementById("quran-verse")?.scrollIntoView({ behavior: "smooth" })}
@@ -119,7 +112,7 @@ export default function Hero() {
           whileHover={{ scale: 1.04, backgroundColor: "rgba(201,164,108,0.1)", boxShadow: "0 0 28px rgba(201,164,108,0.32)" }}
           whileTap={{ scale: 0.97 }}
         >
-          Lihat Undangan
+          Scroll Down
         </motion.button>
       </div>
 

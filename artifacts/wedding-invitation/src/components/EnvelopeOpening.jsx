@@ -30,8 +30,15 @@ export default function EnvelopeOpening({ onOpen, audioRef }) {
     top: 0, bottom: 0,
     width: "50%",
     [side]: 0,
-    backgroundImage: `${BATIK_KAWUNG_DARK}, linear-gradient(${side === "left" ? "155deg" : "205deg"}, #4b1f28 0%, #2a1618 60%, #1a0d10 100%)`,
-    backgroundSize: "80px 80px, cover",
+    backgroundImage: `
+      ${BATIK_KAWUNG_DARK},
+      radial-gradient(circle at 50% 30%, rgba(201,164,108,0.05), transparent 60%),
+      linear-gradient(${side === "left" ? "155deg" : "205deg"},
+        rgba(75,31,40,0.85) 0%,
+        rgba(42,22,24,0.85) 60%,
+        rgba(20,9,12,0.85) 100%
+      )
+    `,
   });
 
   return (
@@ -40,9 +47,21 @@ export default function EnvelopeOpening({ onOpen, audioRef }) {
         <motion.div
           key="gate"
           style={{
-            position: "fixed", inset: 0, zIndex: 100,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            overflow: "hidden", backgroundColor: "#1a0d10",
+            position: "fixed",
+            inset: 0,
+            zIndex: 100,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            overflow: "hidden",
+
+            background: `
+              linear-gradient(rgba(20,9,12,0.7), rgba(20,9,12,0.85)),
+              url("/images/bg-opening.png")
+            `,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
           }}
           exit={{ opacity: 0, transition: { duration: 0.4, delay: 1.0 } }}
         >
@@ -64,18 +83,6 @@ export default function EnvelopeOpening({ onOpen, audioRef }) {
             <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 80, background: "linear-gradient(270deg, transparent, rgba(201,164,108,0.1))" }} />
           </motion.div>
 
-          {/* Gold center seam */}
-          <motion.div
-            style={{
-              position: "absolute", top: 0, bottom: 0, left: "50%",
-              width: 2, transform: "translateX(-50%)", zIndex: 10,
-              background: `linear-gradient(180deg, transparent 0%, ${colors.gold} 20%, #fff8f0 50%, ${colors.gold} 80%, transparent 100%)`,
-              boxShadow: `0 0 20px ${colors.gold}, 0 0 50px rgba(201,164,108,0.45)`,
-            }}
-            animate={opened ? { opacity: 0, scaleY: 0 } : { opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          />
-
           {/* Cover content */}
           <motion.div
             style={{ position: "relative", zIndex: 20, textAlign: "center", padding: "0 28px", maxWidth: 420 }}
@@ -89,7 +96,19 @@ export default function EnvelopeOpening({ onOpen, audioRef }) {
               transition={{ duration: 1, delay: 0.2 }}
               style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}
             >
-              <GununganSmall />
+              <motion.img
+                src="/images/gunungan.png"
+                initial={{ opacity: 0, scale: 0.6, y: -40 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  width: "clamp(140px, 30vw, 300px)",
+                  height: "auto",
+                  opacity: 0.95,
+                  marginBottom: 28,
+                  filter: "drop-shadow(0 0 20px rgba(201,164,108,0.4))"
+                }}
+              />
             </motion.div>
 
             {/* The Wedding Of */}
@@ -124,7 +143,7 @@ export default function EnvelopeOpening({ onOpen, audioRef }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              style={{ fontFamily: fonts.body, fontSize: 15, color: colors.cream, opacity: 0.75, fontStyle: "italic", marginBottom: 20 }}
+              style={{ fontFamily: fonts.ui, fontSize: 10, letterSpacing: "0.5em", color: colors.gold, textTransform: "uppercase", marginBottom: 8 }}
             >
               26 April 2026
             </motion.p>
@@ -140,29 +159,56 @@ export default function EnvelopeOpening({ onOpen, audioRef }) {
             </motion.div>
 
             {/* Kepada / Guest */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              style={{ marginBottom: 28 }}
-            >
-              <p style={{ fontFamily: fonts.ui, fontSize: 10, letterSpacing: "0.3em", color: colors.gold, textTransform: "uppercase", marginBottom: 6, opacity: 0.75 }}>
-                Kepada Yth.
-              </p>
-              <p style={{ fontFamily: fonts.body, fontSize: 13, color: colors.cream, opacity: 0.65, marginBottom: 6, fontStyle: "italic" }}>
-                Bapak / Ibu / Saudara / i
-              </p>
-              <p style={{
-                fontFamily: fonts.heading,
-                fontSize: guestName ? 18 : 14,
-                color: colors.cream,
-                fontWeight: guestName ? 600 : 400,
-                opacity: guestName ? 0.92 : 0.5,
-                fontStyle: guestName ? "normal" : "italic",
+            <div style={{ textAlign: "center", marginBottom: 28 }}>
+              <div style={{
+                display: "inline-block",
+                padding: "18px 28px",
+                borderRadius: 18,
+                background: "linear-gradient(135deg, rgba(201,164,108,0.06), rgba(255,255,255,0.02))",
+                border: "1px solid rgba(201,164,108,0.25)",
+                backdropFilter: "blur(8px)",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.35)"
               }}>
-                {guestName || "Tamu Undangan"}
-              </p>
-            </motion.div>
+
+                {/* Label */}
+                <p style={{
+                  fontFamily: fonts.ui,
+                  fontSize: 10,
+                  letterSpacing: "0.35em",
+                  color: colors.gold,
+                  textTransform: "uppercase",
+                  opacity: 0.7,
+                  marginBottom: 6
+                }}>
+                  Kepada Yth.
+                </p>
+
+                {/* Sub label */}
+                <p style={{
+                  fontFamily: fonts.body,
+                  fontSize: 12,
+                  color: colors.cream,
+                  opacity: 0.5,
+                  marginBottom: 10,
+                  fontStyle: "italic"
+                }}>
+                  Bapak / Ibu / Saudara / i
+                </p>
+
+                {/* Nama tamu */}
+                <p style={{
+                  fontFamily: fonts.script,
+                  fontSize: guestName ? "clamp(20px,4.5vw,28px)" : 16,
+                  color: colors.cream,
+                  opacity: guestName ? 0.95 : 0.5,
+                  textShadow: guestName ? "0 0 12px rgba(201,164,108,0.25)" : "none",
+                  lineHeight: 1.4
+                }}>
+                  {guestName || "Tamu Undangan"}
+                </p>
+
+              </div>
+            </div>
 
             {/* Button */}
             <motion.button
