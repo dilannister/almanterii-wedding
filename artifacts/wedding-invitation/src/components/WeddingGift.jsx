@@ -158,7 +158,7 @@ export default function WeddingGift() {
       type: "E-Wallet",
       title: "GoPay",
       name: "Tri Andini",
-      number: "081234567890",
+      number: "0857-1533-3423",
     },
   ];
 
