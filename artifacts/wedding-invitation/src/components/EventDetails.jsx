@@ -85,6 +85,7 @@ function EventCard({ event, index }) {
           src="/ornaments/gunungann.png"
           initial={{ opacity: 0, scale: 0.6, y: 10 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{
             duration: isAkad ? 1 : 0.8,
             delay: isAkad ? 0.3 : 0.5,

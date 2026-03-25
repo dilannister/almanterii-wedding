@@ -97,6 +97,7 @@ export default function SaveTheDate() {
             src="/images/gunungan.png"
             initial={{ opacity: 0, scale: 0.8, y: -20 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
             style={{

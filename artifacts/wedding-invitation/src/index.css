@@ -156,3 +156,41 @@ html {
   pointer-events: none;
   opacity: 0.6;
 }
+
+/* ── Performance: portrait ring spin (CSS instead of Framer Motion) ── */
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.portrait-ring {
+  animation: ringRotate 28s linear infinite;
+  will-change: transform;
+}
+
+/* ── Performance: portrait glow pulse ── */
+@keyframes portraitGlow {
+  0%,100% { box-shadow: 0 0 28px rgba(201,164,108,0.14); }
+  50%      { box-shadow: 0 0 52px rgba(201,164,108,0.26); }
+}
+.portrait-glow {
+  animation: portraitGlow 3.5s ease-in-out infinite;
+}
+
+/* ── Accessibility: honour reduced-motion preference ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Performance: remove backdrop-filter on low-end mobile ── */
+@media (max-width: 480px) and (hover: none) {
+  [style*="backdrop-filter"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}

@@ -17,6 +17,7 @@ function GiftCard({ gift, delay }) {
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 1, delay }}
       viewport={{ once: true }}
       whileHover={{ y: -6 }}
